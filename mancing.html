@@ -1,0 +1,21 @@
+extends Node2D
+
+var tension: float = 0.0
+var max_tension: float = 100.0
+var tension_increase: float = 30.0
+var tension_decrease: float = 20.0
+var is_pulling: bool = false
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("pull_line"):
+		tension += tension_increase * delta
+	else:
+		tension -= tension_decrease * delta
+
+	tension = clamp(tension, 0.0, max_tension)
+
+	if tension >= max_tension:
+		print("Senar putus! Ikan kabur.")
+	elif tension > 40.0 and tension < 80.0:
+		print("Area aman, ikan makin dekat!")
+    
